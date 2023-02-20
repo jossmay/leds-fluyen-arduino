@@ -1,0 +1,50 @@
+const int lowestPin = 2; 
+const int highestPin = 9;
+const int pulsador = 10;
+
+int estado = LOW;
+
+void setup(){
+    pinMode(pulsador,INPUT);
+    for(int thisPin = lowestPin; thisPin <= highestPin; thisPin++){
+          pinMode(thisPin,OUTPUT);
+          digitalWrite(thisPin,LOW);
+    } 
+}
+
+void loop(){
+  while(digitalRead(pulsador) == HIGH){
+
+
+
+      //enciende el led de menor a mayor
+  for(int thisPin = lowestPin; thisPin <= highestPin; thisPin++){
+      digitalWrite(thisPin, HIGH);
+    delay(100); //espera 100ms
+  }
+
+  //desvanecerse de mayor a menor
+  for(int thisPin = highestPin; thisPin >= lowestPin; thisPin--){
+      digitalWrite(thisPin, LOW);
+    delay(100); //espera 100ms
+  }
+
+  for(int thisPin = highestPin; thisPin >= lowestPin; thisPin--){
+      digitalWrite(thisPin, HIGH);
+    delay(100); //espera 100ms
+  }
+
+  for(int thisPin = lowestPin; thisPin <= highestPin; thisPin++){
+      digitalWrite(thisPin, LOW);
+    delay(100); //espera 100ms
+  }
+
+
+  };
+  while(digitalRead(pulsador) == LOW){
+      for(int thisPin = lowestPin; thisPin <= highestPin; thisPin++){
+          estado = digitalRead(thisPin);
+          digitalWrite(thisPin,!estado);
+    } 
+  }
+}
